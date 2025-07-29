@@ -1,13 +1,13 @@
 <script setup>
 defineProps({
-  name:{
+  name: {
     type: String,
-    required: true
+    required: true,
   },
   emoji: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 })
 </script>
 
@@ -25,5 +25,8 @@ defineProps({
   font-size: 2rem;
   padding: 16px;
   cursor: pointer;
+}
+.card + .card {
+  margin-top: 20px;
 }
 </style>
