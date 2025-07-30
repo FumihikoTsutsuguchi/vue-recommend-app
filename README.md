@@ -1,3 +1,13 @@
+## 概要
+料理のジャンルを選択していくことで、AIがおすすめレシピのURLを教えてくれる。
+## 画面イメージ
+TOP
+
+選択時
+
+結果
+
+
 # vue-recommend-app
 
 This template should help get you started developing with Vue 3 in Vite.
