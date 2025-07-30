@@ -8,16 +8,28 @@ const foods = ref([
     { name: '洋食', emoji: '🇫🇷' },
   ],
   [
+    { name: '創作料理', emoji: '🛠️' },
+    { name: '王道料理', emoji: '🍛' },
+  ],
+  [
     { name: 'ヘルシー', emoji: '🌱' },
-    { name: 'コッテリ', emoji: '🥘' },
+    { name: 'こってり', emoji: '🥘' },
   ],
   [
-    { name: '寿司', emoji: '🍣' },
-    { name: 'ハンバーガー', emoji: '🍔' },
+    { name: '米', emoji: '🌾' },
+    { name: '麺', emoji: '🍜' },
   ],
   [
-    { name: '卵料理', emoji: '🥚' },
-    { name: '鍋', emoji: '🍲' },
+    { name: '肉', emoji: '🍖' },
+    { name: '魚', emoji: '🐟' },
+  ],
+  [
+    { name: '野菜', emoji: '🥬' },
+    { name: '野菜嫌い', emoji: '😠' },
+  ],
+  [
+    { name: '辛味', emoji: '🌶️' },
+    { name: '辛味なし', emoji: '🥺' },
   ],
 ])
 
@@ -70,27 +82,25 @@ function reset() {
 <template>
   <main>
     <h1 class="title">今日は何を作る？</h1>
-    <FoodCard v-for="food in currentPair" :key="food.name" v-bind="food" @click="choose(food)" />
+    <p class="explanation">ジャンルを選ぶと、おすすめ料理が表示されます。</p>
 
-    <template v-if="round < foods.length">
-      <p>vs</p>
-      <FoodCard
-        :name="foods[newFoodIndex].name"
-        :emoji="foods[newFoodIndex].emoji"
-        @click="pickFood(newFoodIndex)"
-      />
-    </template>
-
-    <div v-else class="result">
-      <p>
+    <div v-if="round < foods.length" class="battle">
+      <FoodCard v-bind="currentPair[0]" @click="choose(currentPair[0])" />
+      <p class="vs">vs</p>
+      <FoodCard v-bind="currentPair[1]" @click="choose(currentPair[1])" />
+      <p class="selected">
         あなたが選んだジャンル：<strong>{{ likedFoods.join('、') }}</strong>
       </p>
+    </div>
 
-      <p v-if="loading">レシピを取得中…</p>
+    <div v-else class="result">
+      <p v-if="loading" class="loading">レシピを取得中…</p>
       <p v-else-if="errorMsg" class="error">{{ errorMsg }}</p>
 
       <ul v-else class="recipe-list">
-        <li v-for="r in recipes" :key="r">{{ r }}</li>
+        <li v-for="r in recipes" :key="r.url">
+          <a :href="r.url" target="_blank" rel="noopener">{{ r.title }}</a>
+        </li>
       </ul>
 
       <button class="reset" @click="reset">最初からやり直す</button>
@@ -102,10 +112,53 @@ function reset() {
 main {
   width: 500px;
   margin: 100px auto;
-  text-align: center;
+  padding: 0 30px;
 }
-
+h1 {
+  text-align: center;
+  font-family: "M PLUS 1p";
+}
+.explanation {
+  text-align: center;
+  font-family: "M PLUS 1p";
+}
 .title {
   margin-bottom: 60px;
+}
+.battle {
+  text-align: center;
+}
+.loading {
+  width: 400px;
+  margin: 30px auto;
+  font-family: "M PLUS 1p";
+}
+.recipe-list {
+  width: 400px;
+  margin: 30px auto;
+  a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #1e90ff;
+  }
+}
+.reset {
+  width: 200px;
+  display: block;
+  margin: 60px auto;
+  background-color: #696969;
+  padding: 10px 20px;
+  border-radius: 3px;
+  color: white;
+}
+button {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+.selected {
+  font-family: "M PLUS 1p";
 }
 </style>
