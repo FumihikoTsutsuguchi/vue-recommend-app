@@ -8,7 +8,8 @@ TOP
 <img width="958" height="597" alt="スクリーンショット 2025-07-30 23 50 54" src="https://github.com/user-attachments/assets/4edd1add-b599-4f06-a32f-4f7ed9dbe36a" />
   
 結果   
-<img width="961" height="601" alt="スクリーンショット 2025-07-30 23 51 09" src="https://github.com/user-attachments/assets/350ec1da-ba99-40ee-bdd5-8b20c703e4b3" />  
+<img width="959" height="599" alt="スクリーンショット 2025-07-31 0 08 58" src="https://github.com/user-attachments/assets/90e17805-a1ce-4c7a-92c8-7543327f11ad" />  
+
 
 # vue-recommend-app
 
